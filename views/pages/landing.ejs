@@ -5,7 +5,7 @@
     <p>With this tool you can easily determine your BMI.</p>
 </div>
 
-<form method="GET" class="form-horizontal" action="/result">
+<form method="GET" class="form-horizontal" action="/result" id="Data">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">Please enter your details!</h3>
@@ -24,12 +24,12 @@
                     Your Weight (kg)
                 </label>
                 <div class="col-sm-10">
-                    <input name="kg" type="number" class="form-control" id="kg" />
+                    <input name="kg" class="form-control" id="kg" />
                 </div>
             </div>
             <!--Waist to hip-->   
-            <p>Choose your gender for waist hip ratio calculation</p>            
-            <select name="Gender">
+            <p>Choose your sex for waist hip ratio calculation</p>            
+            <select name="Gender" id="Gender" form="Data">
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
             </select> 
@@ -47,7 +47,7 @@
                     Your hip measuremnet (cm)
                 </label>
                 <div class="col-sm-10">
-                    <input name="hcm" type="number" class="form-control" id="hcm" />
+                    <input name="hcm" class="form-control" id="hcm" />
                 </div>
             </div>
         </div>

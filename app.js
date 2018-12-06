@@ -22,7 +22,9 @@ app.get("/result", (req, res) =>
     var gender = req.query.Gender;        
     var whrCategory = "";
 
-    if(m == 0 || isNaN(m))
+    //console.log(JSON.stringify( req.query));
+
+    if(m == 0 || isNaN(m) || hcm == 0 || isNaN(hcm) || isNaN(wcm) ||isNaN(kg))
     {
         res.redirect("/");
     }
@@ -43,9 +45,9 @@ app.get("/result", (req, res) =>
         else if(bmi >= 30)
         {
             bmiCat = "Obese";
-        }
+        }       
 
-        if(gender == "Male")
+        if(gender === "Male")
         {
             if(whrVal < .90)
             {
@@ -60,7 +62,7 @@ app.get("/result", (req, res) =>
                 whrCategory = "Obesity is your goal in life";
             }
         }
-        else
+        else if(gender === "Female")
         {
             if(whrVal < .80)
             {
@@ -74,6 +76,16 @@ app.get("/result", (req, res) =>
             {
                 whrCategory = "Obesity is your goal in life or you might be pregnant";
             }
+        }
+
+        if(m < 0 || kg < 0)
+        {
+            bmiCat = "Bmi input can't be less than zero";
+        }
+
+        if(whrVal < 0 || wcm < 0) 
+        {
+            whrCategory = "Waist hip ration input can't be less than zero"
         }
 
         res.render("pages/result", 
