@@ -392,35 +392,14 @@ const myResult3 = await page.$("#whrCat");
 const txt = await page.evaluate(myResult => myResult.textContent, myResult3);
 await expect(txt).toBe("Normal weight");
 }, timeout)
-//#endregion
 
-//this test, tests a low bmi output
-let test8 = "Valid h"
-it(test8, async () => {
+let test25 = "whrCat obese female"
+it(test25, async () => {
 await page.waitFor('input[name=cm]');
 await page.$eval('input[name=cm]', el => el.value = "1");
 await page.waitFor('input[name=kg]');
 await page.$eval('input[name=kg]', el => el.value = "1");
-await page.select('#Gender', 'Male');
-await page.waitFor('input[name=wcm]');
-await page.$eval('input[name=wcm]', el => el.value = "85");
-await page.waitFor('input[name=hcm]');
-await page.$eval('input[name=hcm]', el => el.value = "100");
-await page.click('input[type=submit]');
-
-await page.waitFor(200);
-const myResult3 = await page.$("#whrVal");
-const txt = await page.evaluate(myResult => myResult.textContent, myResult3);
-await expect(txt).toBe("0.85");
-}, timeout)
-
-let test5 = "whrCat"
-it(test5, async () => {
-await page.waitFor('input[name=cm]');
-await page.$eval('input[name=cm]', el => el.value = "1");
-await page.waitFor('input[name=kg]');
-await page.$eval('input[name=kg]', el => el.value = "1");
-await page.select('#Gender', 'Male');
+await page.select('#Gender', 'Female');
 await page.waitFor('input[name=wcm]');
 await page.$eval('input[name=wcm]', el => el.value = "85");
 await page.waitFor('input[name=hcm]');
@@ -430,9 +409,30 @@ await page.click('input[type=submit]');
 await page.waitFor(200);
 const myResult3 = await page.$("#whrCat");
 const txt = await page.evaluate(myResult => myResult.textContent, myResult3);
-await expect(txt).toBe("Normal weight");
+await expect(txt).toBe("Obesity is your goal in life or you might be pregnant");
 }, timeout)
-  },
+
+let test26 = "whrCat overweight female"
+it(test26, async () => {
+await page.waitFor('input[name=cm]');
+await page.$eval('input[name=cm]', el => el.value = "1");
+await page.waitFor('input[name=kg]');
+await page.$eval('input[name=kg]', el => el.value = "1");
+await page.select('#Gender', 'Female');
+await page.waitFor('input[name=wcm]');
+await page.$eval('input[name=wcm]', el => el.value = "83");
+await page.waitFor('input[name=hcm]');
+await page.$eval('input[name=hcm]', el => el.value = "100");
+await page.click('input[type=submit]');
+
+await page.waitFor(200);
+const myResult3 = await page.$("#whrCat");
+const txt = await page.evaluate(myResult => myResult.textContent, myResult3);
+await expect(txt).toBe("Overweight");
+}, timeout)
+//#endregion
+  
+},
   timeout
 )
 
